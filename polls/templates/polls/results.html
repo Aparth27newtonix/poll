@@ -1,0 +1,29 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="{%static 'polls/stylr.css'%}">
+</head>
+<body>
+
+<div class= 'main'>
+<h1> HERE ARE  YOUR FOLLOWING RESULT: </h1>
+</div>
+
+<div class="box">
+<h1>{{ question.question_text }}</h1>
+<ul> 
+{% for choice in question.choice_set.all %} 
+	<li>
+		{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes |pluralize}}
+	</li> 
+{% endfor %} </ul>
+<div class="button">
+<a href="{% url 'polls:detail' question.id %}">Vote again ?</a> 
+</div>
+<a href='/polls/'>home</a>
+</div>
+</body>
+</html>
